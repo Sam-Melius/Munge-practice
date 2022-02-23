@@ -41,7 +41,7 @@ Output:
 
 export function getAverageCoolFactor(customers) {
     return customers.reduce((acc, curr) => 
-        (acc + curr.cool_factor) / customers.length, 0);
+        (acc + curr.cool_factor), 0) / customers.length;
 }
 
 /* 
@@ -80,7 +80,19 @@ Output:
 */
 
 export function getGenderBreakdownOfFordOwners(customers) {
-    return true;
+   
+    const genderCount = customers
+        .filter((item) => item.car_make === 'Ford')
+        .reduce((acc, curr) => {
+            acc[curr.gender] 
+                ? acc[curr.gender]++
+                : acc[curr.gender] = 1;
+             
+            
+            return acc;
+        }, {});
+    
+    return genderCount;
 }
 
 //////////////////////////////////////////////////////////
@@ -104,9 +116,12 @@ Output:
 }
 */
 
-export function getGenderBreakdownOfEachCar(customers) {
-    return true;
-}
+// export function getGenderBreakdownOfEachCar(customers) {
+//     const breakdownsByBrand = carBrands.reduce((acc, brand) => {
+//         const genderBreakdown =  // do whatever you did to get the ford gender breakdown working
+//         acc[brand] = genderBreakdown
+//     }, {})
+// }
 
 /* 
 Output: 
@@ -169,9 +184,21 @@ Output:
 }
 */
 
-export function getCoolFactorsByAgeBracket(customers) {
-    return true;
-}
+
+
+// export function getCoolFactorsByAgeBracket(customers) {
+//     const ageBracketMap = customers.reduce((acc, curr) => {
+//         const bracket = getBracket(curr);
+
+//         if(curr[bracket] {
+//             acc[bracket].push(curr.cool_factor);}
+
+//         else {
+//             acc[bracket] = [curr.cool_factor];
+//     }
+//         return acc;
+//     }, {});
+// }
 
 
 /* 
