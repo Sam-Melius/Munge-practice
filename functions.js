@@ -4,7 +4,8 @@ Output:
 */
 
 export function greetUsers(customers) {
-    return true;
+    return customers
+        .map(item => `Hello ${item.first_name} ${item.last_name}!`);
 }
 
 /* 
@@ -27,7 +28,10 @@ Output:
 */
 
 export function addAllAges(customers) {
-    return true;
+    return customers
+        .reduce((acc, curr) => 
+            acc + curr.age, 0);
+        
 }
 
 /* 
@@ -36,7 +40,8 @@ Output:
 */
 
 export function getAverageCoolFactor(customers) {
-    return true;
+    return customers.reduce((acc, curr) => 
+        (acc + curr.cool_factor), 0) / customers.length;
 }
 
 /* 
@@ -50,7 +55,18 @@ Output:
 */
 
 export function getTotalOfEachGender(customers) {
-    return true;
+    const genderCount = customers
+        .reduce((acc, curr) => {
+            if(acc[curr.gender]) {
+                acc[curr.gender]++;
+            }
+            else {
+                acc[curr.gender] = 1;
+            }
+            return acc;
+        }, {});
+    
+    return genderCount;
 }
 
 /* 
@@ -64,7 +80,19 @@ Output:
 */
 
 export function getGenderBreakdownOfFordOwners(customers) {
-    return true;
+   
+    const genderCount = customers
+        .filter((item) => item.car_make === 'Ford')
+        .reduce((acc, curr) => {
+            acc[curr.gender] 
+                ? acc[curr.gender]++
+                : acc[curr.gender] = 1;
+             
+            
+            return acc;
+        }, {});
+    
+    return genderCount;
 }
 
 //////////////////////////////////////////////////////////
@@ -89,7 +117,20 @@ Output:
 */
 
 export function getGenderBreakdownOfEachCar(customers) {
-    return true;
+    const breakdownsByBrand = customers
+        .reduce((acc, curr) => {
+            acc[curr.car_make]
+                ? acc[curr.car_make][curr.gender] 
+                    ? acc[curr.car_make][curr.gender]++
+                    : acc[curr.car_make][curr.gender] = 1
+                : acc[curr.car_make] = {
+                    [curr.gender]: 1
+                };
+             
+            
+            return acc;
+        }, {});
+    return breakdownsByBrand;
 }
 
 /* 
@@ -153,9 +194,21 @@ Output:
 }
 */
 
-export function getCoolFactorsByAgeBracket(customers) {
-    return true;
-}
+
+
+// export function getCoolFactorsByAgeBracket(customers) {
+//     const ageBracketMap = customers.reduce((acc, curr) => {
+//         const bracket = getBracket(curr);
+
+//         if(curr[bracket] {
+//             acc[bracket].push(curr.cool_factor);}
+
+//         else {
+//             acc[bracket] = [curr.cool_factor];
+//     }
+//         return acc;
+//     }, {});
+// }
 
 
 /* 
