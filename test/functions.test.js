@@ -1,6 +1,8 @@
 // IMPORT MODULES under test here:
-import { greetUsers,
+import { addAllAges, greetUsers,
     greetUsersOverAge60,
+    getAverageCoolFactor,
+    getTotalOfEachGender
 } from '../functions.js';
 import customers from './data.js';
 
@@ -84,29 +86,33 @@ test('greetUsersOverAge60', (expect) => {
     expect.deepEqual(actual, expected);
 });
 
-skip('addAllAges', (expect) => {
-    const expected = true;
+test('addAllAges', (expect) => {
+    const expected = 2125;
 
-    const actual = greetUsers();
+    const actual = addAllAges(customers);
 
-    expect.equal(actual, expected);
+    expect.deepEqual(actual, expected);
 });
 
 
 skip('getAverageCoolFactor', (expect) => {
-    const expected = true;
+    const expected = 5.08888888889;
 
-    const actual = greetUsers();
+    const actual = getAverageCoolFactor(customers);
 
-    expect.equal(actual, expected);
+    expect.deepEqual(actual, expected);
 });
 
-skip('getTotalOfEachGender', (expect) => {
-    const expected = true;
+test('getTotalOfEachGender', (expect) => {
+    const expected = { 'Bigender': 1,
+        'Female': 19,
+        'Genderqueer': 1,
+        'Male': 23,
+        'Non-binary': 1 };
 
-    const actual = greetUsers();
+    const actual = getTotalOfEachGender(customers);
 
-    expect.equal(actual, expected);
+    expect.deepEqual(actual, expected);
 });
 
 skip('getGenderBreakdownOfFordOwners', (expect) => {

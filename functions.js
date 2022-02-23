@@ -28,7 +28,10 @@ Output:
 */
 
 export function addAllAges(customers) {
-    return true;
+    return customers
+        .reduce((acc, curr) => 
+            acc + curr.age, 0);
+        
 }
 
 /* 
@@ -37,7 +40,8 @@ Output:
 */
 
 export function getAverageCoolFactor(customers) {
-    return true;
+    return customers.reduce((acc, curr) => 
+        (acc + curr.cool_factor) / customers.length, 0);
 }
 
 /* 
@@ -51,7 +55,18 @@ Output:
 */
 
 export function getTotalOfEachGender(customers) {
-    return true;
+    const genderCount = customers
+        .reduce((acc, curr) => {
+            if(acc[curr.gender]) {
+                acc[curr.gender]++;
+            }
+            else {
+                acc[curr.gender] = 1;
+            }
+            return acc;
+        }, {});
+    
+    return genderCount;
 }
 
 /* 
