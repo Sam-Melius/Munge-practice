@@ -116,12 +116,22 @@ Output:
 }
 */
 
-// export function getGenderBreakdownOfEachCar(customers) {
-//     const breakdownsByBrand = carBrands.reduce((acc, brand) => {
-//         const genderBreakdown =  // do whatever you did to get the ford gender breakdown working
-//         acc[brand] = genderBreakdown
-//     }, {})
-// }
+export function getGenderBreakdownOfEachCar(customers) {
+    const breakdownsByBrand = customers
+        .reduce((acc, curr) => {
+            acc[curr.car_make]
+                ? acc[curr.car_make][curr.gender] 
+                    ? acc[curr.car_make][curr.gender]++
+                    : acc[curr.car_make][curr.gender] = 1
+                : acc[curr.car_make] = {
+                    [curr.gender]: 1
+                };
+             
+            
+            return acc;
+        }, {});
+    return breakdownsByBrand;
+}
 
 /* 
 Output: 
